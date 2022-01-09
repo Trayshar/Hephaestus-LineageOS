@@ -1,0 +1,14 @@
+--- a/device.mk	2022-01-01 21:06:09.536333297 +0100
++++ b/device.mk	2022-01-01 22:20:04.972209684 +0100
+@@ -22,11 +22,5 @@
+ # System properties
+ -include $(LOCAL_PATH)/system_prop.mk
+ 
+-#GAPPS config
+-GAPPS_VARIANT := pico
+-GAPPS_PRODUCT_PACKAGES += GoogleDialer
+-GAPPS_PRODUCT_PACKAGES += Wallpapers
+-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+-
+ # Common overlay
+ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
