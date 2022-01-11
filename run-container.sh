@@ -25,6 +25,6 @@ docker run \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/keys:/srv/keys" \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/manifests:/srv/local_manifests" \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/scripts:/srv/userscripts" \
-    -e "SYNC_THREADS=4" \
-    --cpus="4" \
+    -e "SYNC_THREADS=6" \
+    --cpus="6" \
     trayshar/lineage-builder

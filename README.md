@@ -18,9 +18,10 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
     - Disable Autocorrect
 - (?) Add a opt-in-per-App root firewall
 - (?) Improve Sandboxing
+- (?) Remove either Lawnchair or Trebutchet
 - Write better run script
     - Configure build properties on command line
-    - Sort outputs by time first and model second
+    - Sort outputs by time first and device second
+    - Move logs into output folder, remove need for seperate folder
 - Unify build process to adapt other devices eventually
     - Stop downloading and compiling unnecessary device trees/chipsets 
-    - Change docker image to multithread `repo sync` with the `-j$(nproc --all)` options
