@@ -6,7 +6,7 @@ docker build \
     -t trayshar/lineage-builder \
     $HOME/Dev/Android/docker-lineage-cicd/
 
-echo ">> [$(date)] Running build container..."
+echo ">> [$(date)] Running build..."
 docker run \
     -e "TZ=Europe/Berlin" \
     -e "BRANCH_NAME=lineage-18.1" \

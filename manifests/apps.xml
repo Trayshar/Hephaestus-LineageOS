@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remove-project name="LineageOS/android_external_chromium-webview" />
-    <remove-project name="LineageOS/android_packages_apps_Gallery2" />
     
     <remote name="LocalGit" fetch="http://192.168.86.100:1080" />
     <project path="prebuilts/my-custom-apps" name="trayshar/lineageos_custom_apps" remote="LocalGit" revision="main" />
