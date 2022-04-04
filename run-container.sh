@@ -15,7 +15,6 @@ docker run \
     -e "SIGNATURE_SPOOFING=restricted" \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=false" \
-    -e "WITH_SU=true" \
     -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
     -e "CUSTOM_PACKAGES=BromiteWebView" \
     -v "$HOME/Dev/.build/Android/J5-LineageOS18-1-MicroG/src:/srv/src" \
@@ -25,6 +24,6 @@ docker run \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/keys:/srv/keys" \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/manifests:/srv/local_manifests" \
     -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/scripts:/srv/userscripts" \
-    -e "SYNC_THREADS=6" \
+    -e "PARALLEL_JOBS=6" \
     --cpus="6" \
     trayshar/lineage-builder

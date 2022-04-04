@@ -15,6 +15,8 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
 - Add a opt-in-per-App sandbox with firewall, which isolates data
     - Use for GCam, **Discord**, WhatsApp, etc
 - Add Aurora and give it the root permission to update/install in the background
+    - Pre-add GMS to blocked apps
+- Always allow screenshots
 - Preconfigure settings
     - Disable Autocorrect
 - Write better run script
@@ -23,4 +25,3 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
     - Move logs into output folder, remove need for seperate folder
     - Unify build process to adapt other devices eventually
     - Stop downloading and compiling unnecessary device trees/chipsets 
-- Fix root option not working
