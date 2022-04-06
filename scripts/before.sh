@@ -6,7 +6,7 @@ patch --quiet --force -p1 -i "/root/userscripts/patches/additional_repos.xml.pat
 
 cd ..
 cd ..
+cd ..
 
-echo ">> [$(date)] [before] Removing GalleryGo and Lawnchair"
-cd samsung/msm8916-common
-patch --quiet --force -p1 -i "/root/userscripts/patches/msm8916-common-vendor.mk.patch"
+echo ">> [$(date)] [before] Moving prebuilts"
+cp -arvu /srv/prebuilts prebuilts

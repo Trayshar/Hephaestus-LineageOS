@@ -6,24 +6,28 @@ docker build \
     -t trayshar/lineage-builder \
     $HOME/Dev/Android/docker-lineage-cicd/
 
+BUILD_DIR="/media/SSDII/AndroidBuild/"
+CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
+    
 echo ">> [$(date)] Running build..."
 docker run \
     -e "TZ=Europe/Berlin" \
     -e "BRANCH_NAME=lineage-18.1" \
-    -e "DEVICE_LIST=j5nlte" \
+    -e "DEVICE_LIST=kane" \
     -e "SIGN_BUILDS=true" \
     -e "SIGNATURE_SPOOFING=restricted" \
     -e "WITH_GMS=true" \
-    -e "INCLUDE_PROPRIETARY=false" \
+    -e "INCLUDE_PROPRIETARY=true" \
     -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
     -e "CUSTOM_PACKAGES=BromiteWebView" \
-    -v "$HOME/Dev/.build/Android/J5-LineageOS18-1-MicroG/src:/srv/src" \
-    -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/out:/srv/zips" \
-    -v "$HOME/Dev/.build/Android/J5-LineageOS18-1-MicroG/logs:/srv/logs" \
-    -v "$HOME/Dev/.build/Android/J5-LineageOS18-1-MicroG/cache:/srv/ccache" \
-    -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/keys:/srv/keys" \
-    -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/manifests:/srv/local_manifests" \
-    -v "$HOME/Dev/Android/J5-LineageOS18-1-MicroG/scripts:/srv/userscripts" \
+    -v "$BUILD_DIR/src:/srv/src" \
+    -v "$CONFIG_DIR/out:/srv/zips" \
+    -v "$BUILD_DIR/logs:/srv/logs" \
+    -v "$BUILD_DIR/cache:/srv/ccache" \
+    -v "$CONFIG_DIR/keys:/srv/keys" \
+    -v "$CONFIG_DIR/manifests:/srv/local_manifests" \
+    -v "$CONFIG_DIR/scripts:/srv/userscripts" \
+    -v "$CONFIG_DIR/prebuilts:/srv/prebuilts" \
     -e "PARALLEL_JOBS=6" \
     --cpus="6" \
     trayshar/lineage-builder

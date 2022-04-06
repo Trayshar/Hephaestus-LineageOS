@@ -1,4 +1,4 @@
-# Custom Build script to compile LineageOS 18.1 with MicroG for Galaxy J5 device family
+# Custom Build script to compile LineageOS 18.1 with MicroG for Motorola Moto One Vision (codename "kane") family
 
 ## Usage
 Just execute the `run-container.sh` shell script. You might want to tweak it a little bit to your needs tho.
@@ -7,21 +7,22 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
 - No GApps, MircoG is used instead
 - Built upon LineageOS 18.1, providing a stable Android 11 system
 - Only necessary apps are installed, zero bloat
-- Currently only supports permissive builds, so no SELinux protection
 - Uses Bromite, a privacy-enhanced chromium fork, as default WebView
 
 ## TODO
-- Enable Enforcing builds
+- Check if we use Enforcing builds
 - Add a opt-in-per-App sandbox with firewall, which isolates data
-    - Use for GCam, **Discord**, WhatsApp, etc
-- Add Aurora and give it the root permission to update/install in the background
-    - Pre-add GMS to blocked apps
+    - Use for **Discord**, WhatsApp, etc
+- Adopt the Aurora ecosystem (doesn't seem to be that well maintained atm)
+    - Add AuroraStore, AuroraDroid and AuroraServices
+    - Replace FDroid
+    - Pre-configure repos and blocked apps (GMS)
+    - See [this issue](https://gitlab.com/CalyxOS/calyxos/-/issues/705)
 - Always allow screenshots
-- Preconfigure settings
-    - Disable Autocorrect
+- Configure OTA updates
 - Write better run script
     - Configure build properties on command line
+        - Apps
     - Sort outputs by time first and device second
     - Move logs into output folder, remove need for seperate folder
     - Unify build process to adapt other devices eventually
-    - Stop downloading and compiling unnecessary device trees/chipsets 
