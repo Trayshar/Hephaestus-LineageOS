@@ -1,13 +1,15 @@
 #!/bin/bash
 
-echo ">> [$(date)] Building docker container..."
-docker build \
-    -f $HOME/Dev/Android/docker-lineage-cicd/Dockerfile \
-    -t trayshar/lineage-builder \
-    $HOME/Dev/Android/docker-lineage-cicd/
-
+DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
+CPUS=6
+
+echo ">> [$(date)] Building docker container..."
+docker build \
+    -f "$DOCKERFILE_DIR/Dockerfile" \
+    -t trayshar/lineage-builder \
+    "$DOCKERFILE_DIR/"
     
 echo ">> [$(date)] Running build..."
 docker run \
@@ -19,7 +21,7 @@ docker run \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
     -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
-    -e "CUSTOM_PACKAGES=BromiteWebView" \
+    -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices GalleryPro K9Mail PdfViewerPro NewPipe" \
     -v "$BUILD_DIR/src:/srv/src" \
     -v "$CONFIG_DIR/out:/srv/zips" \
     -v "$BUILD_DIR/logs:/srv/logs" \
@@ -28,6 +30,6 @@ docker run \
     -v "$CONFIG_DIR/manifests:/srv/local_manifests" \
     -v "$CONFIG_DIR/scripts:/srv/userscripts" \
     -v "$CONFIG_DIR/prebuilts:/srv/prebuilts" \
-    -e "PARALLEL_JOBS=6" \
-    --cpus="6" \
+    -e "PARALLEL_JOBS=$CPUS" \
+    --cpus="$CPUS" \
     trayshar/lineage-builder

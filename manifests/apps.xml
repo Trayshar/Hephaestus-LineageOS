@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remove-project name="LineageOS/android_external_chromium-webview" />
+    <remove-project name="LineageOS/android_packages_apps_Gallery2" />
+    <remove-project name="LineageOS/android_packages_apps_Camera2" />
+    <remove-project name="LineageOS/android_packages_apps_Eleven" />
+    <remove-project name="LineageOS/android_packages_apps_Snap" />
+    <remove-project name="LineageOS/android_packages_apps_Jelly" />
+    
+    <remote name="Gitlab" fetch="https://gitlab.com" />
+    <project path="prebuilts/AuroraStore" name="MSe1969/AuroraStore-prebuilt" revision="master" />
 </manifest> 
  
