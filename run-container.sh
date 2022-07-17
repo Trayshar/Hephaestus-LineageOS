@@ -1,4 +1,8 @@
 #!/bin/bash
+die () {
+  echo ">> [$(date)] Error: $@"
+  exit 1
+}
 
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
@@ -9,12 +13,12 @@ echo ">> [$(date)] Building docker container..."
 docker build \
     -f "$DOCKERFILE_DIR/Dockerfile" \
     -t trayshar/lineage-builder \
-    "$DOCKERFILE_DIR/"
+    "$DOCKERFILE_DIR/" || die "Failed to build docker container!"
     
 echo ">> [$(date)] Running build..."
 docker run \
     -e "TZ=Europe/Berlin" \
-    -e "BRANCH_NAME=lineage-18.1" \
+    -e "BRANCH_NAME=lineage-19.1" \
     -e "DEVICE_LIST=kane" \
     -e "SIGN_BUILDS=true" \
     -e "SIGNATURE_SPOOFING=restricted" \
@@ -29,7 +33,6 @@ docker run \
     -v "$CONFIG_DIR/keys:/srv/keys" \
     -v "$CONFIG_DIR/manifests:/srv/local_manifests" \
     -v "$CONFIG_DIR/scripts:/srv/userscripts" \
-    -v "$CONFIG_DIR/prebuilts:/srv/prebuilts" \
     -e "PARALLEL_JOBS=$CPUS" \
     --cpus="$CPUS" \
     trayshar/lineage-builder
