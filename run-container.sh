@@ -24,6 +24,8 @@ docker run \
     -e "SIGNATURE_SPOOFING=restricted" \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
+    -e "ZIP_SUBDIR=false" \
+    -e "OTA_URL=https://192.168.86.100/api" \
     -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
     -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices GalleryPro K9Mail PdfViewerPro NewPipe" \
     -v "$BUILD_DIR/src:/srv/src" \

@@ -28,7 +28,7 @@ generate_prebuilt Bromite "https://github.com/bromite/bromite/releases/latest/do
 generate_prebuilt BromiteWebView "https://github.com/bromite/bromite/releases/latest/download/arm64_SystemWebView.apk"
 generate_prebuilt GalleryPro "https://f-droid.org/repo/com.simplemobiletools.gallery.pro_372.apk"
 generate_prebuilt PdfViewerPro "https://f-droid.org/repo/com.gsnathan.pdfviewer_28.apk"
-generate_prebuilt K9Mail "https://f-droid.org/repo/com.fsck.k9_32000.apk"
+generate_prebuilt K9Mail "https://f-droid.org/repo/com.fsck.k9_32001.apk"
 generate_prebuilt NewPipe "https://github.com/TeamNewPipe/NewPipe/releases/download/v0.23.1/NewPipe_v0.23.1.apk"
 generate_prebuilt AuroraStore "https://gitlab.com/AuroraOSS/AuroraStore/uploads/bbc1bd5a77ab2b40bbf288ccbef8d1f0/AuroraStore_4.1.1.apk"
 generate_prebuilt AuroraServices "https://gitlab.com/AuroraOSS/AuroraServices/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk"
