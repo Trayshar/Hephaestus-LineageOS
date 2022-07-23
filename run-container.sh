@@ -4,6 +4,14 @@ die () {
   exit 1
 }
 
+# Exit if user scripts are not executable
+for file in scripts/*.sh; do 
+    if [[ -f "$file" && ! -x "$file" ]]; then 
+        die "Script $file is not executable!"
+    fi 
+done 
+
+
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
