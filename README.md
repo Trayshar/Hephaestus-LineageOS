@@ -10,12 +10,15 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
 
 ## Known issues
 - No internet over wifi hotspot ([#4657](https://gitlab.com/LineageOS/issues/android/-/issues/4657))
+- AudioFX is not working
+- OTA is not working due to self-signed SSL certificate ([Add custom trust anchor](https://developer.android.com/training/articles/security-config#TrustingAdditionalCas))
+- Connecting to WLAN will disable Bluetooth for a moment
 
 ## TODO
 - Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`
 - Add a opt-in-per-App sandbox with firewall, which isolates data
     - Use for **Discord**, WhatsApp, etc
-- Always allow screenshots
+- Always allow screenshots (See [this commit](https://github.com/VarunS2002/Xposed-Disable-FLAG_SECURE/blob/main/app/src/main/java/com/varuns2002/disable_flag_secure/DisableFlagSecure.kt))
 - Write better run script
     - Configure build properties on command line
         - Apps
