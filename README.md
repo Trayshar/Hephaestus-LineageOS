@@ -12,7 +12,7 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
 - No internet over wifi hotspot ([#4657](https://gitlab.com/LineageOS/issues/android/-/issues/4657))
 - AudioFX is not working
 - OTA is not working due to self-signed SSL certificate ([Add custom trust anchor](https://developer.android.com/training/articles/security-config#TrustingAdditionalCas))
-- Connecting to WLAN will disable Bluetooth for a moment
+- Connecting to WLAN will briefly disable Bluetooth
 
 ## TODO
 - Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`

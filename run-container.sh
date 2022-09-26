@@ -15,7 +15,7 @@ done
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
-CPUS=6
+CPUS=10
 
 echo ">> [$(date)] Building docker container..."
 docker build \
@@ -33,9 +33,8 @@ docker run \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
     -e "ZIP_SUBDIR=false" \
-    -e "OTA_URL=https://192.168.86.100/api" \
     -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
-    -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices GalleryPro K9Mail PdfViewerPro NewPipe" \
+    -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices" \
     -v "$BUILD_DIR/src:/srv/src" \
     -v "$CONFIG_DIR/out:/srv/zips" \
     -v "$BUILD_DIR/logs:/srv/logs" \
