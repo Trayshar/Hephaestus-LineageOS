@@ -15,7 +15,7 @@ done
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
-CPUS=10
+CPUS=4
 
 echo ">> [$(date)] Building docker container..."
 docker build \

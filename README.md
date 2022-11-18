@@ -3,6 +3,8 @@
 ## Usage
 Just execute the `run-container.sh` shell script. You might want to tweak it a little bit to your needs tho.
 
+If you want to update your image, connect your device and run `push-update.sh out/<your-file>.zip`. Make sure adb root is unlocked on your device.
+
 ## Features
 - No GApps, MircoG is used instead
 - Built upon LineageOS 19.1, providing a stable Android 12 system
@@ -11,8 +13,7 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
 ## Known issues
 - No internet over wifi hotspot ([#4657](https://gitlab.com/LineageOS/issues/android/-/issues/4657))
 - AudioFX is not working
-- OTA is not working due to self-signed SSL certificate ([Add custom trust anchor](https://developer.android.com/training/articles/security-config#TrustingAdditionalCas))
-- Connecting to WLAN will briefly disable Bluetooth
+- Connecting to WLAN while playing music over bluetooth will crash the bt-wlan driver
 
 ## TODO
 - Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`
@@ -25,3 +26,4 @@ Just execute the `run-container.sh` shell script. You might want to tweak it a l
     - Sort outputs by time first and device second
     - Move logs into output folder, remove need for seperate folder
     - Unify build process to adapt other devices eventually
+- Switch WebView to Mull
