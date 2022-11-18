@@ -15,7 +15,7 @@ fi
 zip_path=`realpath "$1"`
 
 if [ "`adb get-state 2>/dev/null`" != "device" ]; then
-    echo "Abort: No device found. Waiting for one..."
+    echo "No device found. Waiting for one..."
     adb wait-for-device
 fi
 if ! adb root; then
@@ -45,7 +45,7 @@ device=${zip_name_split[4]}
 timestamp=`stat -c '%W' "$zip_path"`
 size=`stat -c "%s" "$zip_path"`
 
-echo "Will write \"$zip_name\" to your device at \"$zip_path_device\", with the following properties:"
+echo "Write \"$zip_name\" to \"$zip_path_device\", with the following properties:"
 echo "Version: $version"
 echo "Type: $type"
 echo "Device $device"
