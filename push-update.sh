@@ -35,27 +35,21 @@ else
     status=2
 fi
 
-# Assume lineage-VERSION-DATE-TIME-TYPE.zip
+# Assume lineage-VERSION-TIME-TYPE-DEVICE.zip
 zip_name=`basename "$zip_path"`
 zip_name_split=(${zip_name//-/ })
 id=`echo "$zip_name" | sha1sum | cut -d' ' -f1`
 version=${zip_name_split[1]}
-build_date=${zip_name_split[2]}
-build_time=${zip_name_split[3]}
-build_time=`echo "${build_time:0:2}:${build_time:2:4}:59"`
-type=`IFS=-; echo "${zip_name_split[*]:4}" | cut -d'.' -f1`
-if [ "`uname`" = "Darwin" ]; then
-    timestamp=`date -jf "%Y%m%d %H:%M:%S" "$build_date $build_time" +%s`
-    size=`stat -f%z "$zip_path"`
-else
-    timestamp=`date --date="$build_date $build_time" +%s`
-    size=`stat -c "%s" "$zip_path"`
-fi
+type=${zip_name_split[3]}
+device=${zip_name_split[4]}
+timestamp=`stat -c '%W' "$zip_path"`
+size=`stat -c "%s" "$zip_path"`
 
 echo "Will write \"$zip_name\" to your device at \"$zip_path_device\", with the following properties:"
 echo "Version: $version"
 echo "Type: $type"
-echo "Build time: $build_date $build_time (epoch: $timestamp)"
+echo "Device $device"
+echo "Build time: $(date -d "@$timestamp") ($timestamp)"
 read -p "Are you sure? " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[YyJj]$ ]]

@@ -33,7 +33,7 @@ docker run \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
     -e "ZIP_SUBDIR=false" \
-    -e "RELEASE_TYPE=$(date +"%H%M")-UNOFFICIAL-MicroG" \
+    -e "RELEASE_TYPE=microG" \
     -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices" \
     -v "$BUILD_DIR/src:/srv/src" \
     -v "$CONFIG_DIR/out:/srv/zips" \
