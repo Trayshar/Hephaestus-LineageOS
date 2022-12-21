@@ -23,6 +23,7 @@ generate_prebuilt () {
   wget -q -O "$packagePath/$packageName.apk" "$binaryURL" || die "Failed to download binary for \"$packageName\""
 }
 
+# TODO: Read CUSTOM_PACKAGES for a list of packages, process only those. Define these urls somewhere else
 echo ">> [$(date)] [before] Generating prebuilts"
 generate_prebuilt Bromite "https://github.com/bromite/bromite/releases/latest/download/arm64_ChromePublic.apk"
 generate_prebuilt BromiteWebView "https://github.com/bromite/bromite/releases/latest/download/arm64_SystemWebView.apk"

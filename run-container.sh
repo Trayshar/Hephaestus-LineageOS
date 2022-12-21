@@ -11,18 +11,21 @@ for file in scripts/*.sh; do
     fi 
 done 
 
-
+# TODO: Reorganize this with submodules
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
 BUILD_DIR="/media/SSDII/AndroidBuild/"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
+# TODO: Query about this
 CPUS=4
 
 echo ">> [$(date)] Building docker container..."
+# TODO: Remove tag and use hash instead
 docker build \
     -f "$DOCKERFILE_DIR/Dockerfile" \
     -t trayshar/lineage-builder \
     "$DOCKERFILE_DIR/" || die "Failed to build docker container!"
     
+# Consider changing WITH_GMS: https://github.com/lineageos4microg/docker-lineage-cicd/issues/358
 echo ">> [$(date)] Running build..."
 docker run \
     -e "TZ=Europe/Berlin" \

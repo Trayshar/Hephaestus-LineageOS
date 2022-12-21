@@ -27,3 +27,6 @@ If you want to update your image, connect your device and run `push-update.sh ou
     - Move logs into output folder, remove need for seperate folder
     - Unify build process to adapt other devices eventually
 - Switch WebView to Mull
+- Always allow rotation of screen
+- Lower step size of audio volume change
+- Fix open issues in LineageOS upstream repo
