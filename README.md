@@ -29,4 +29,6 @@ If you want to update your image, connect your device and run `push-update.sh ou
 - Switch WebView to Mull
 - Always allow rotation of screen
 - Lower step size of audio volume change
+- Cancel bluetooth connecting in GUI
+- Allow zip-ing files in file manager (without copying them into a folder first)
 - Fix open issues in LineageOS upstream repo
