@@ -13,10 +13,10 @@ done
 
 # TODO: Reorganize this with submodules
 DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
-BUILD_DIR="/media/SSDII/AndroidBuild/"
+BUILD_DIR="$HOME/Dev/.build/Android"
 CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
 # TODO: Query about this
-CPUS=4
+CPUS=12
 
 echo ">> [$(date)] Building docker container..."
 # TODO: Remove tag and use hash instead
@@ -29,7 +29,7 @@ docker build \
 echo ">> [$(date)] Running build..."
 docker run \
     -e "TZ=Europe/Berlin" \
-    -e "BRANCH_NAME=lineage-19.1" \
+    -e "BRANCH_NAME=lineage-20.0" \
     -e "DEVICE_LIST=kane" \
     -e "SIGN_BUILDS=true" \
     -e "SIGNATURE_SPOOFING=restricted" \

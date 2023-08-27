@@ -1,4 +1,4 @@
-# Custom Build script to compile LineageOS 19.1 with MicroG for Motorola Moto One Vision (codename "kane")
+# Custom Build script to compile LineageOS 20.0 with MicroG for Motorola Moto One Vision (codename "kane")
 
 ## Usage
 Just execute the `run-container.sh` shell script. You might want to tweak it a little bit to your needs tho.
@@ -7,13 +7,12 @@ If you want to update your image, connect your device and run `push-update.sh ou
 
 ## Features
 - No GApps, MircoG is used instead
-- Built upon LineageOS 19.1, providing a stable Android 12 system
+- Built upon LineageOS 20.0, providing a stable Android 13 system
 - Uses Bromite, a privacy-enhanced chromium fork, as default WebView and Browser
 
 ## Known issues
-- No internet over wifi hotspot ([#4657](https://gitlab.com/LineageOS/issues/android/-/issues/4657))
-- AudioFX is not working
-- Connecting to WLAN while playing music over bluetooth will crash the bt-wlan driver
+- AudioFX is not working. Maybe related to my using `Soundcore Space A40` earphones which have their own companion app
+- Default lineageos apps are shipped
 
 ## TODO
 - Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`
@@ -32,3 +31,4 @@ If you want to update your image, connect your device and run `push-update.sh ou
 - Cancel bluetooth connecting in GUI
 - Allow zip-ing files in file manager (without copying them into a folder first)
 - Fix open issues in LineageOS upstream repo
+- Enhance fingerprinting resitance/configure User Agent

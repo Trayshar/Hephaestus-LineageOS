@@ -41,8 +41,8 @@ zip_name_split=(${zip_name//-/ })
 id=`echo "$zip_name" | sha1sum | cut -d' ' -f1`
 version=${zip_name_split[1]}
 type=${zip_name_split[3]}
-# TODO: still contains ".zip"
 device=${zip_name_split[4]}
+device=${device%.zip}
 timestamp=`stat -c '%W' "$zip_path"`
 size=`stat -c "%s" "$zip_path"`
 

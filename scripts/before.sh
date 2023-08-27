@@ -8,10 +8,12 @@ echo ">> [$(date)] [before] Applying patches"
 for file in /root/userscripts/patches/*.patch; do 
     if [ -f "$file" ]; then 
         echo ">> [$(date)] [before] Applying $(basename $file)"
+        # TODO: Better error handeling; Maybe use a git patch command?
         patch --quiet --force -p1 -i "$file" || die "Failed to apply patch $file"
     fi 
 done
 
+# TODO: Is there a way to not have a prebuilt be part of the system partition, and instead be installed normally like a user-installed app?
 generate_prebuilt () {
   [ "$#" -eq 2 ] || die "Expected 2 arguments, got $#"
   local packageName="$1"
@@ -27,5 +29,5 @@ generate_prebuilt () {
 echo ">> [$(date)] [before] Generating prebuilts"
 generate_prebuilt Bromite "https://github.com/bromite/bromite/releases/latest/download/arm64_ChromePublic.apk"
 generate_prebuilt BromiteWebView "https://github.com/bromite/bromite/releases/latest/download/arm64_SystemWebView.apk"
-generate_prebuilt AuroraStore "https://gitlab.com/AuroraOSS/AuroraStore/uploads/bbc1bd5a77ab2b40bbf288ccbef8d1f0/AuroraStore_4.1.1.apk"
+generate_prebuilt AuroraStore "https://auroraoss.com/AuroraStore/Stable/AuroraStore_4.3.1.apk"
 generate_prebuilt AuroraServices "https://gitlab.com/AuroraOSS/AuroraServices/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk"
