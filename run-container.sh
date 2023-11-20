@@ -11,40 +11,57 @@ for file in scripts/*.sh; do
     fi 
 done 
 
-# TODO: Reorganize this with submodules
-DOCKERFILE_DIR="$HOME/Dev/Android/docker-lineage-cicd"
-BUILD_DIR="$HOME/Dev/.build/Android"
-CONFIG_DIR="$HOME/Dev/Android/J5-LineageOS18-1-MicroG"
-# TODO: Query about this
-CPUS=12
+# Reading configuration for this build run
+[ "$#" -eq 1 ] || die "Expected path to the configuration file, got $#"
+source "$1" || die "Coud not load configuration!"
+echo ">> [$(date)] Configuration: Build $BRANCH_NAME-$RELEASE_NAME for \"$DEVICE_LIST\""
+echo ">> [$(date)] Configuration: Included packages: \"$CUSTOM_PACKAGES\""
+
+# Create required folders if they do not already exist
+mkdir -p "$ARTIFACTS_DIR/out"
+mkdir -p "$ARTIFACTS_DIR/logs"
+mkdir -p "$BUILD_DIR/src"
+mkdir -p "$BUILD_DIR/cache"
 
 echo ">> [$(date)] Building docker container..."
-# TODO: Remove tag and use hash instead
-docker build \
-    -f "$DOCKERFILE_DIR/Dockerfile" \
-    -t trayshar/lineage-builder \
-    "$DOCKERFILE_DIR/" || die "Failed to build docker container!"
-    
-# Consider changing WITH_GMS: https://github.com/lineageos4microg/docker-lineage-cicd/issues/358
+container_id=$(docker build -q -f "docker-lineage-cicd/Dockerfile" "docker-lineage-cicd/")
+if [ $? -ne 0 ]; then
+    # Call docker build again without '-q' so I can see the error
+    docker build -f "docker-lineage-cicd/Dockerfile" "docker-lineage-cicd/"
+    die "Failed to build docker container!"
+fi
+
+# Generate filename for next run, see https://superuser.com/a/924453
+# This argument makes sure the date stays consistent if we compile at midnight, and to ensure each build gets it's own logfile
+log_path="$ARTIFACTS_DIR/logs/repo"
+log_name=$(date +%Y%m%d)
+i=0
+while [[ -e $log_path-$log_name-$i.log ]] ; do
+    let i++
+done
+log_name=$log_name-$i
+
+# TODO: Consider changing WITH_GMS: https://github.com/lineageos4microg/docker-lineage-cicd/issues/358
 echo ">> [$(date)] Running build..."
-docker run \
+docker run --rm \
     -e "TZ=Europe/Berlin" \
-    -e "BRANCH_NAME=lineage-20.0" \
-    -e "DEVICE_LIST=kane" \
+    -e "LOGS_NAME=$log_name" \
+    -e "BRANCH_NAME=$BRANCH_NAME" \
+    -e "DEVICE_LIST=$DEVICE_LIST" \
     -e "SIGN_BUILDS=true" \
     -e "SIGNATURE_SPOOFING=restricted" \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
     -e "ZIP_SUBDIR=false" \
-    -e "RELEASE_TYPE=microG" \
-    -e "CUSTOM_PACKAGES=BromiteWebView Bromite AuroraStore AuroraServices" \
+    -e "RELEASE_TYPE=$RELEASE_NAME" \
+    -e "CUSTOM_PACKAGES=$CUSTOM_PACKAGES" \
+    -v "$ARTIFACTS_DIR/out:/srv/zips" \
+    -v "$ARTIFACTS_DIR/logs:/srv/logs" \
     -v "$BUILD_DIR/src:/srv/src" \
-    -v "$CONFIG_DIR/out:/srv/zips" \
-    -v "$BUILD_DIR/logs:/srv/logs" \
     -v "$BUILD_DIR/cache:/srv/ccache" \
-    -v "$CONFIG_DIR/keys:/srv/keys" \
-    -v "$CONFIG_DIR/manifests:/srv/local_manifests" \
-    -v "$CONFIG_DIR/scripts:/srv/userscripts" \
+    -v "$KEYS_DIR:/srv/keys" \
+    -v "$PWD/manifests:/srv/local_manifests" \
+    -v "$PWD/scripts:/srv/userscripts" \
     -e "PARALLEL_JOBS=$CPUS" \
     --cpus="$CPUS" \
-    trayshar/lineage-builder
+    $container_id

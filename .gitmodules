@@ -1,0 +1,3 @@
+[submodule "docker-lineage-cicd"]
+	path = docker-lineage-cicd
+	url = git@github.com:Trayshar/docker-lineage-cicd.git

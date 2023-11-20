@@ -1,2 +1,6 @@
-keys/
+# These are the folder names used by the build and artifact dir
 out/
+src/
+logs/
+cache/
+keys/

@@ -13,7 +13,6 @@ for file in /root/userscripts/patches/*.patch; do
     fi 
 done
 
-# TODO: Is there a way to not have a prebuilt be part of the system partition, and instead be installed normally like a user-installed app?
 generate_prebuilt () {
   [ "$#" -eq 2 ] || die "Expected 2 arguments, got $#"
   local packageName="$1"
@@ -25,9 +24,29 @@ generate_prebuilt () {
   wget -q -O "$packagePath/$packageName.apk" "$binaryURL" || die "Failed to download binary for \"$packageName\""
 }
 
-# TODO: Read CUSTOM_PACKAGES for a list of packages, process only those. Define these urls somewhere else
+echo ">> [$(date)] [before] Parsing urls for prebuilts"
+# Map: https://stackoverflow.com/a/691157
+declare -A urls
+
+# Process urls.txt file, see https://gist.github.com/melbahja/33fac6f3f823632e880401f5f7451cfb
+while read line || [[ -n $line ]]; do
+  # Ignore comments
+  [[ $line = \#* || -z "$line" ]] && continue
+  key=${line%% *}
+  value=${line#* }
+  # Remove leading whitespaces, https://www.baeldung.com/linux/trim-whitespace-bash-variable#using-sed
+  value=$(echo $value | sed 's/[[:blank:]]//g')
+  # Set var, see https://nickjanetakis.com/blog/associative-arrays-in-bash-aka-key-value-dictionaries
+  urls["${key}"]="${value}"
+  echo ">> [$(date)] [before] Loaded url for \"$key\""
+done < "/root/userscripts/prebuilts/urls.txt" || die "Could not read \"scripts/prebuilts/urls.txt\"!"
+
 echo ">> [$(date)] [before] Generating prebuilts"
-generate_prebuilt Bromite "https://github.com/bromite/bromite/releases/latest/download/arm64_ChromePublic.apk"
-generate_prebuilt BromiteWebView "https://github.com/bromite/bromite/releases/latest/download/arm64_SystemWebView.apk"
-generate_prebuilt AuroraStore "https://auroraoss.com/AuroraStore/Stable/AuroraStore_4.3.1.apk"
-generate_prebuilt AuroraServices "https://gitlab.com/AuroraOSS/AuroraServices/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk"
+# Read CUSTOM_PACKAGES for a list of packages, process only those. Define these urls somewhere else
+for package in $CUSTOM_PACKAGES; do
+  if [[ -v urls["${package}"] ]] ; then
+    generate_prebuilt $package ${urls[${package}]}
+  else
+    die "No URL found for package \"$package\"!"
+  fi
+done

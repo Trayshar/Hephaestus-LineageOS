@@ -1,0 +1,7 @@
+# Comments are allowed. Format: <PACKAGE_NAME>     <url>
+# Any number of whitespaces is allowed. No tabs.
+
+Bromite        https://github.com/bromite/bromite/releases/latest/download/arm64_ChromePublic.apk
+BromiteWebView https://github.com/bromite/bromite/releases/latest/download/arm64_SystemWebView.apk
+AuroraStore    https://gitlab.com/AuroraOSS/AuroraStore/uploads/ac32503aee88c6d1067dad57f3f92e09/AuroraStore_4.3.5.apk
+AuroraServices https://gitlab.com/AuroraOSS/AuroraServices/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk
