@@ -13,6 +13,9 @@ If you want to update your image, connect your device and run `push-update.sh ou
 ## Known issues
 - AudioFX is not working. Maybe related to my using `Soundcore Space A40` earphones which have their own companion app
 - Default lineageos apps are shipped
+- Hotspots dont work sometimes
+- BT audio still crashes if sound is played while a wifi connection is established
+- Fingerprint sensor doesn't store fingerprints and is completely broken after a couple of restarts
 
 ## TODO
 - Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`
