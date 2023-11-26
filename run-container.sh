@@ -44,15 +44,17 @@ log_name=$log_name-$i
 # TODO: Consider changing WITH_GMS: https://github.com/lineageos4microg/docker-lineage-cicd/issues/358
 echo ">> [$(date)] Running build..."
 docker run --rm \
-    -e "TZ=Europe/Berlin" \
-    -e "LOGS_NAME=$log_name" \
+    -v "/etc/localtime:/etc/localtime:ro" \
+    -e "BUILD_IDENTIFIER=$log_name" \
+    -e "PRINT_LOGFILE_PATHS=true" \
+    -e "ZIP_SUBDIR=artifacts" \
+    -e "LOGS_SUBDIR=codename" \
     -e "BRANCH_NAME=$BRANCH_NAME" \
     -e "DEVICE_LIST=$DEVICE_LIST" \
     -e "SIGN_BUILDS=true" \
     -e "SIGNATURE_SPOOFING=restricted" \
     -e "WITH_GMS=true" \
     -e "INCLUDE_PROPRIETARY=true" \
-    -e "ZIP_SUBDIR=false" \
     -e "RELEASE_TYPE=$RELEASE_NAME" \
     -e "CUSTOM_PACKAGES=$CUSTOM_PACKAGES" \
     -v "$ARTIFACTS_DIR/out:/srv/zips" \

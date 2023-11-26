@@ -1,4 +1,4 @@
-# Custom Build script to compile LineageOS 20.0 with MicroG for Motorola Moto One Vision (codename "kane")
+# Custom Build script to compile LineageOS 20.0 with MicroG
 
 ## Usage
 Just execute `run-container.sh configuration.sh`. You can configure it by editing the `configuration.sh` file.
@@ -12,14 +12,21 @@ Disable packages by doing "pm disable <package_name>" in a root shell, see https
 - Built upon LineageOS 20.0, providing a stable Android 13 system
 - Uses Bromite, a privacy-enhanced chromium fork, as default WebView and Browser
 
+## Devices
+- Motorola Moto One Vision ("kane")
+- Xiaomi Mi 9T ("davinci")
+
 ## Known issues
 - Default lineageos apps are shipped, I disabled them using the workaround mentioned above
+### Motorola Moto One Vision ("kane")
 - Hotspots don't work sometimes
 - BT audio still crashes if sound is played while a wifi connection is established ([#5676](https://gitlab.com/LineageOS/issues/android/-/issues/5676))
 - Fingerprint sensor doesn't store fingerprints and is completely broken after a couple of restarts ([#6080](https://gitlab.com/LineageOS/issues/android/-/issues/6080))
+### Xiaomi Mi 9T ("davinci")
+- None so far :)
 
 ## TODO
-- Investigate suspicious blobs in `vendor/motorola/exynos9610-common/`
+- Allow to pin some repositories to a commit to work around issues in upstream
 - Add a opt-in-per-App sandbox with firewall, which isolates data
     - Use for **Discord**, WhatsApp, etc
 - Always allow screenshots (See [this commit](https://github.com/VarunS2002/Xposed-Disable-FLAG_SECURE/blob/main/app/src/main/java/com/varuns2002/disable_flag_secure/DisableFlagSecure.kt))
