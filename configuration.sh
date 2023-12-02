@@ -12,4 +12,4 @@ BRANCH_NAME="lineage-20.0"
 DEVICE_LIST="kane"
 RELEASE_NAME="microG"
 # Add packages to the system partition. Requires them to be set up correctly, see scripts/prebuilts
-CUSTOM_PACKAGES="BromiteWebView Bromite AuroraStore AuroraServices"
+CUSTOM_PACKAGES="AuroraStore AuroraServices"

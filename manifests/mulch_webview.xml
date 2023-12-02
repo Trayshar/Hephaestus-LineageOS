@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <remote name="gitlab" fetch="https://gitlab.com" />
+
+    <!-- Copied from https://gitlab.com/divested-mobile/divestos-build/-/blob/master/Manifests/Manifest_LAOS-20.0.xml -->
+	<remove-project name="LineageOS/android_external_chromium-webview_patches" />
+	<remove-project name="LineageOS/android_external_chromium-webview_prebuilt_arm" />
+	<remove-project name="LineageOS/android_external_chromium-webview_prebuilt_arm64" />
+	<remove-project name="LineageOS/android_external_chromium-webview_prebuilt_x86" />
+	<remove-project name="LineageOS/android_external_chromium-webview_prebuilt_x86_64" />
+	<project path="external/chromium-webview" name="divested-mobile/mulch" groups="pdk" clone-depth="1" remote="gitlab" revision="master" />
+</manifest>
