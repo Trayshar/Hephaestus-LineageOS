@@ -1,9 +1,9 @@
 # Custom Build script to compile LineageOS 20.0 with MicroG
 
 ## Usage
-Just execute `run-container.sh configuration.sh`. You can configure it by editing the `configuration.sh` file.
+Just execute `./run-container.sh configuration.sh`. You can configure it by editing the `configuration.sh` file or writing your own.
 
-If you want to update your device, connect your device with adb root and run `reset-updater.sh && push-update.sh /path/to/<your-file>.zip`. Then, you can open the LineageOS Updater and install the update.
+If you want to update your device, connect your device with adb root and run `./reset-updater.sh && ./push-update.sh /path/to/<your-file>.zip`. Then, you can open the LineageOS Updater and install the update.
 
 ## Features
 - Completely de-googled, [MircoG](https://microg.org) is used instead
@@ -22,7 +22,7 @@ If you want to update your device, connect your device with adb root and run `re
 - BT audio crashes if sound is played while a wifi connection is established ([#5676](https://gitlab.com/LineageOS/issues/android/-/issues/5676))
 - Fingerprint sensor doesn't store fingerprints and is completely broken after a couple of restarts ([#6080](https://gitlab.com/LineageOS/issues/android/-/issues/6080))
 ### Xiaomi Mi 9T ("davinci")
-- Builds, but not yet installed...
+- None so far :)
 
 ## TODO
 - Allow to pin some repositories to a commit to work around issues in upstream

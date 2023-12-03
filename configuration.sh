@@ -9,7 +9,7 @@ CPUS=12
 
 # LineageOS version, device list and release name
 BRANCH_NAME="lineage-20.0"
-DEVICE_LIST="kane"
+DEVICE_LIST="davinci,kane"
 RELEASE_NAME="microG"
 # Add packages to the system partition. Requires them to be set up correctly, see scripts/prebuilts
 CUSTOM_PACKAGES="AuroraStore AuroraServices"
